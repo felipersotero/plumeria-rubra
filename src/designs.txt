@@ -1,0 +1,3 @@
+Textos
+
+className='font-inter font-medium text-xl'
