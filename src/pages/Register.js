@@ -3,6 +3,8 @@ import Header from '../components/Header';
 import { FiCheck } from "react-icons/fi";
 import Card from '../components/Card';
 
+import plumeria from '../images/plumeria.png';
+import talo from '../images/talo.png';
 
 function Register(){
 
@@ -91,20 +93,20 @@ function Register(){
 
             <div className='w-4/5 lg:w-3/5 flex flex-col lg:flex-row gap-6'>
                 <div className='w-full lg:w-1/2'>
-                    <Card tubeNumber={"01"} percent={"0"}  changeMasses={changeMasses} corrosionRate={corrosionRates[0]} efficiency={efficiencies[0]} />
-                    <Card tubeNumber={"02"} percent={"1"}  changeMasses={changeMasses} corrosionRate={corrosionRates[1]} efficiency={efficiencies[1]} />
-                    <Card tubeNumber={"03"} percent={"5"}  changeMasses={changeMasses} corrosionRate={corrosionRates[2]} efficiency={efficiencies[2]} />
-                    <Card tubeNumber={"04"} percent={"10"} changeMasses={changeMasses} corrosionRate={corrosionRates[3]} efficiency={efficiencies[3]} />
-                    <Card tubeNumber={"05"} percent={"15"} changeMasses={changeMasses} corrosionRate={corrosionRates[4]} efficiency={efficiencies[4]} />
-                    <Card tubeNumber={"06"} percent={"20"} changeMasses={changeMasses} corrosionRate={corrosionRates[5]} efficiency={efficiencies[5]} />
+                    <Card tubeNumber={"01"} image={plumeria} percent={"0"}  changeMasses={changeMasses} corrosionRate={corrosionRates[0]} efficiency={efficiencies[0]} />
+                    <Card tubeNumber={"02"} image={plumeria} percent={"1"}  changeMasses={changeMasses} corrosionRate={corrosionRates[1]} efficiency={efficiencies[1]} />
+                    <Card tubeNumber={"03"} image={plumeria} percent={"5"}  changeMasses={changeMasses} corrosionRate={corrosionRates[2]} efficiency={efficiencies[2]} />
+                    <Card tubeNumber={"04"} image={plumeria} percent={"10"} changeMasses={changeMasses} corrosionRate={corrosionRates[3]} efficiency={efficiencies[3]} />
+                    <Card tubeNumber={"05"} image={plumeria} percent={"15"} changeMasses={changeMasses} corrosionRate={corrosionRates[4]} efficiency={efficiencies[4]} />
+                    <Card tubeNumber={"06"} image={plumeria} percent={"20"} changeMasses={changeMasses} corrosionRate={corrosionRates[5]} efficiency={efficiencies[5]} />
                 </div>
                 <div className='w-full lg:w-1/2'>
-                    <Card tubeNumber={"07"} percent={"0"}  changeMasses={changeMasses} corrosionRate={corrosionRates[6]}  efficiency={efficiencies[6]} />
-                    <Card tubeNumber={"08"} percent={"1"}  changeMasses={changeMasses} corrosionRate={corrosionRates[7]}  efficiency={efficiencies[7]} />
-                    <Card tubeNumber={"09"} percent={"5"}  changeMasses={changeMasses} corrosionRate={corrosionRates[8]}  efficiency={efficiencies[8]} />
-                    <Card tubeNumber={"10"} percent={"10"} changeMasses={changeMasses} corrosionRate={corrosionRates[9]}  efficiency={efficiencies[9]} />
-                    <Card tubeNumber={"11"} percent={"15"} changeMasses={changeMasses} corrosionRate={corrosionRates[10]} efficiency={efficiencies[10]} />
-                    <Card tubeNumber={"12"} percent={"20"} changeMasses={changeMasses} corrosionRate={corrosionRates[11]} efficiency={efficiencies[11]} />
+                    <Card tubeNumber={"07"} image={talo} percent={"0"}  changeMasses={changeMasses} corrosionRate={corrosionRates[6]}  efficiency={efficiencies[6]} />
+                    <Card tubeNumber={"08"} image={talo} percent={"1"}  changeMasses={changeMasses} corrosionRate={corrosionRates[7]}  efficiency={efficiencies[7]} />
+                    <Card tubeNumber={"09"} image={talo} percent={"5"}  changeMasses={changeMasses} corrosionRate={corrosionRates[8]}  efficiency={efficiencies[8]} />
+                    <Card tubeNumber={"10"} image={talo} percent={"10"} changeMasses={changeMasses} corrosionRate={corrosionRates[9]}  efficiency={efficiencies[9]} />
+                    <Card tubeNumber={"11"} image={talo} percent={"15"} changeMasses={changeMasses} corrosionRate={corrosionRates[10]} efficiency={efficiencies[10]} />
+                    <Card tubeNumber={"12"} image={talo} percent={"20"} changeMasses={changeMasses} corrosionRate={corrosionRates[11]} efficiency={efficiencies[11]} />
                 </div>
                 {/* <div className='w-1/2'>
                     <Card tubeNumber={"01"} percent={"0"}  changeMasses={(e) => changeMasses(0, e)} />

@@ -16,7 +16,7 @@ function Card(props){
         <div className='border-2 border-border rounded-xl overflow-hidden w-full h-64 m-4'>
             <div className='bg-primary h-1/3 flex flex-row items-center justify-around'>
                 <p className='font-inter font-semibold text-3xl text-white'>Tubo de ensaio {props.tubeNumber}</p>
-                <p>imagem</p>
+                <img src={props.image} alt="imagem" className='w-16 h-16' />
                 <p className='font-inter font-light text-xl text-white'>{props.percent}%</p>
             </div>
             <div className='flex flex-col sm:flex-row justify-between m-4'>
