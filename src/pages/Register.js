@@ -24,7 +24,7 @@ function Register(){
     //Funções
 
     function saveTime(){
-        alert(lastTime)
+        console.log(process.env.REACT_APP_TEST)
     }
 
     function changeTime(e){
