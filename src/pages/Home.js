@@ -9,7 +9,7 @@ import Loading from '../components/Loading';
 
 function Home(){
 
-  const {area, setArea, constant, setConstant, density, setDensity} = useContext(DataContext);
+  const {setArea, setConstant, setDensity, setInitialMasses} = useContext(DataContext);
 
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -20,14 +20,16 @@ function Home(){
               
               querySnapshot.docs
                   .forEach((doc) => {
-                          const data = doc.data()
+                          const data = doc.data();
                           
                           console.log(data.area);
                           console.log(data.constant);
                           console.log(data.density);
+                          console.log(data.initialMasses);
                           setArea(data.area);
                           setConstant(data.constant);
                           setDensity(data.density);
+                          setInitialMasses(data.initialMasses)
                           setIsLoaded(true);                
                   })
           })
@@ -38,10 +40,10 @@ function Home(){
   }, [])
 
   return (
-    <>
+    <div className='bg-background w-full min-h-screen flex justify-center items-center flex-col'>
       {
-        (isLoaded) ? (
-          <div className='bg-background w-full min-h-screen flex justify-center items-center flex-col'>
+        isLoaded ?
+          <>
             <Link to="/registro"
               className='bg-primary hover:bg-primary/90 w-80 h-16 flex justify-center items-center rounded-2xl m-4 text-white font-inter font-semibold text-3xl'>
                 Cadastrar
@@ -58,14 +60,11 @@ function Home(){
               className='bg-primary hover:bg-primary/90 w-80 h-16 flex justify-center items-center rounded-2xl m-4 text-white font-inter font-semibold text-3xl'>
               Configurações
             </Link>
-            <p>{area}</p>
-            <p>{constant}</p>
-            <p>{density}</p>
-          </div>)
+          </>
         :
-        (<Loading />)
+        <Loading />
       }
-    </>
+    </div>
   );
 }
 

@@ -1,35 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import Header from '../components/Header';
 
-import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../firebase';
-import Loading from '../components/Loading';
+import { DataContext } from '../contexts/context';
 
 function Settings(props){
 
-    const [area, setArea] = useState();
-    const [constant, setConstant] = useState();
-    const [density, setDensity] = useState();
+    const {area, constant, density} = useContext(DataContext);
 
-    async function getData(){
-        
-        await getDocs(collection(db, "GeneralSettings"))
-            .then((querySnapshot) => {
-                
-                querySnapshot.docs
-                    .forEach((doc) => {
-                            const data = doc.data()
-                            
-                            setArea(data.area);
-                            setConstant(data.constant);
-                            setDensity(data.density);                     
-                    })
-            })
-    }
-
-    useEffect(() => {
-        getData()
-    }, [])
 
     return (
         <div className='bg-background w-full min-h-screen flex items-center flex-col'>
@@ -38,32 +15,15 @@ function Settings(props){
                 
                 <div className='flex flex-row justify-around items-center my-2'>
                     <p className='font-inter font-medium text-xl'>Área</p>
-
-                    {
-                        area ?
-                            <p className='font-inter font-light text-xl'>{area}</p>
-                        :
-                            <Loading />
-                    }
-
+                    <p className='font-inter font-light text-xl'>{area}</p>
                 </div>
                 <div className='flex flex-row justify-around items-center my-2'>
                     <p className='font-inter font-medium text-xl'>Constante</p>
-                    {
-                        constant ?
-                            <p className='font-inter font-light text-xl'>{constant}</p>
-                        :
-                            <Loading />
-                    }
+                    <p className='font-inter font-light text-xl'>{constant}</p>
                 </div>
                 <div className='flex flex-row justify-around items-center my-2'>
                     <p className='font-inter font-medium text-xl'>Densidade</p>
-                    {
-                        density ?
-                            <p className='font-inter font-light text-xl'>{density}</p>
-                        :
-                            <Loading />
-                    }
+                    <p className='font-inter font-light text-xl'>{density}</p>
                 </div>
             </div>
         </div>

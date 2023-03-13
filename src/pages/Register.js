@@ -1,7 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import Header from '../components/Header';
 import { FiCheck } from "react-icons/fi";
 import Card from '../components/Card';
+
+import { collection, addDoc } from 'firebase/firestore';
+import { db } from '../firebase';
+
+import { DataContext } from '../contexts/context';
 
 import plumeria from '../images/plumeria.png';
 import talo from '../images/talo.png';
@@ -10,9 +15,7 @@ function Register(){
 
     //Constantes
 
-    const k = 87600
-    const a = 9.533511
-    const dens = 7.86
+    const {area, constant, density, initialMasses} = useContext(DataContext);
 
     //States
 
@@ -42,6 +45,9 @@ function Register(){
 
     function calculate(){
 
+        console.log(masses);
+        console.log(initialMasses);
+
         if(lastTime <= 0){
             alert("Digite um tempo válido!")
             window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -49,11 +55,55 @@ function Register(){
         } else {
             setCorrosionRates(masses
                 .map((mass, i) => i < 12 
-                    ? ((k*mass)/(a*lastTime*dens))
+                    ? ((constant*(initialMasses[i]-mass))/(area*lastTime*density))
                     : mass))
 
             window.scrollTo({ top: 0, behavior: 'smooth' })
         }
+
+    }
+
+    function save() {
+
+        const data = {
+            corrosionRates: corrosionRates,
+            efficiencies: efficiencies,
+            masses: masses,
+            date: new Date().getTime()
+        }
+
+        const collectionRef = collection(db, "Measurements");
+
+        addDoc(collectionRef, data)
+            .then((docRef) => {
+                console.log("Documento criado com ID:", docRef.id);
+            })
+            .catch((error) => {
+                console.error("Erro ao criar documento:", error);
+          });
+
+        
+        //collection(db, "Measurements")
+
+        // const collectionRef = firebase.firestore().collection("nomedacolecao");
+
+        // // Cria um objeto com os dados que serão adicionados ao documento
+        // const data = {
+        // campo1: "valor1",
+        // campo2: "valor2",
+        // campo3: "valor3"
+        // };
+
+        // // Adiciona o objeto à coleção usando o método add()
+        // collectionRef
+        // .add(data)
+        // .then((docRef) => {
+        //     console.log("Documento criado com sucesso:", docRef.id);
+        // })
+        // .catch((error) => {
+        //     console.error("Erro ao criar documento:", error);
+        // });
+
 
     }
 
@@ -131,6 +181,9 @@ function Register(){
             <div>
                 <button className='bg-primary hover:bg-primary/90 w-80 h-16 flex justify-center items-center rounded-2xl m-4' onClick={calculate}>
                     <p className='text-white font-inter font-semibold text-3xl'>Calcular</p>
+                </button>
+                <button className='bg-primary hover:bg-primary/90 w-80 h-16 flex justify-center items-center rounded-2xl m-4' onClick={save}>
+                    <p className='text-white font-inter font-semibold text-3xl'>Salvar</p>
                 </button>
             </div>
             <footer className='h-48' />
