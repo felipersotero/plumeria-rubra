@@ -15,15 +15,15 @@ function Settings(props){
                 
                 <div className='flex flex-row justify-around items-center my-2'>
                     <p className='font-inter font-medium text-xl'>Área</p>
-                    <p className='font-inter font-light text-xl'>{area}</p>
+                    <p className='font-inter font-light text-xl'>{area} cm²</p>
                 </div>
                 <div className='flex flex-row justify-around items-center my-2'>
                     <p className='font-inter font-medium text-xl'>Constante</p>
-                    <p className='font-inter font-light text-xl'>{constant}</p>
+                    <p className='font-inter font-light text-xl'>{constant} mm/ano</p>
                 </div>
                 <div className='flex flex-row justify-around items-center my-2'>
                     <p className='font-inter font-medium text-xl'>Densidade</p>
-                    <p className='font-inter font-light text-xl'>{density}</p>
+                    <p className='font-inter font-light text-xl'>{density} g/cm³</p>
                 </div>
             </div>
         </div>

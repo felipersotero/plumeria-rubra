@@ -47,6 +47,10 @@ function Register(){
 
         console.log(masses);
         console.log(initialMasses);
+        
+        for(let i = 0; i < 12; i ++){
+            console.log(initialMasses[i] - masses[i])
+        }
 
         if(lastTime <= 0){
             alert("Digite um tempo válido!")
@@ -77,9 +81,11 @@ function Register(){
         addDoc(collectionRef, data)
             .then((docRef) => {
                 console.log("Documento criado com ID:", docRef.id);
+                alert("Registrado com sucesso!");
             })
             .catch((error) => {
                 console.error("Erro ao criar documento:", error);
+                alert("Ocorreu um erro ao tentar salvar registro.");
           });
 
         
