@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { SHA256 } from 'crypto-js';
+
 import { getDoc, doc } from 'firebase/firestore';
 import { db } from '../firebase';
 
@@ -12,10 +14,10 @@ function Login(){
     //const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
 
+
     const navigate = useNavigate();
 
     async function getAuthCode(){
-        console.log(process.env.REACT_APP_AUTH_DOC)
         
         const docRef = doc(db, "Auth", process.env.REACT_APP_AUTH_DOC)
 
@@ -35,7 +37,7 @@ function Login(){
     }
 
     function verifyLogin(){
-        if(password === authToken){
+        if(SHA256(password).toString() === authToken){
             alert("Autenticado!")
             localStorage.setItem('isAuthenticated', 'true')
             navigate('/home')
