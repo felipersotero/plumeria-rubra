@@ -8,9 +8,10 @@ export const DataProvider = ({children}) => {
     const [constant, setConstant] = useState();
     const [density, setDensity] = useState();
     const [initialMasses, setInitialMasses] = useState([]);
+    const [currentUser, setCurrentUser] = useState();
 
     return (
-        <DataContext.Provider value={{area, setArea, constant, setConstant, density, setDensity, initialMasses, setInitialMasses}}>
+        <DataContext.Provider value={{area, setArea, constant, setConstant, density, setDensity, initialMasses, setInitialMasses, currentUser, setCurrentUser}}>
             {children}
         </DataContext.Provider>
     );

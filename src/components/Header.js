@@ -6,7 +6,7 @@ function Header(props){
     return (
         <div className='bg-primary w-full h-24 flex justify-center items-center flex-row p-8'>
             <div>
-                <Link to="/">
+                <Link to="/home">
                     <FiArrowLeft className='text-white hover:text-white/90 w-12 h-12' /> 
                 </Link>
             </div>
