@@ -24,7 +24,6 @@ function Login(){
         const docData = await getDoc(docRef);
         const fieldValue = docData.data().id;
         setAuthToken(fieldValue);
-        //console.log(fieldValue);
 
     }
 

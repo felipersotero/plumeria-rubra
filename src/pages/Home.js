@@ -21,11 +21,6 @@ function Home(){
               querySnapshot.docs
                   .forEach((doc) => {
                           const data = doc.data();
-                          
-                          console.log(data.area);
-                          console.log(data.constant);
-                          console.log(data.density);
-                          console.log(data.initialMasses);
                           setArea(data.area);
                           setConstant(data.constant);
                           setDensity(data.density);

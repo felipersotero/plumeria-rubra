@@ -29,7 +29,6 @@ function Data(props){
             
             setDataList(newData);
             setRegisterCount(querySnapshot.size);
-            console.log(dataList, newData);
             setIsLoaded(true);
 
         })

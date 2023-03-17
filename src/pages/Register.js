@@ -46,19 +46,10 @@ function Register(){
         const updatedMasses = [...masses]
         updatedMasses[n] = value
         setMasses(updatedMasses)
-        console.log(masses)
-        console.log(value)
         setIsAllowedToSave(false)
     }
 
     function calculate(){
-
-        console.log(masses);
-        console.log(initialMasses);
-        
-        for(let i = 0; i < 12; i ++){
-            console.log(initialMasses[i] - masses[i])
-        }
 
         if(lastTime <= 0){
             alert("Digite um tempo válido!")
