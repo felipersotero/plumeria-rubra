@@ -19,7 +19,7 @@ function PrivateRoute() {
 
 function GeneralRoutes(){
     return(
-        <BrowserRouter>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
              <Routes>
                 <Route element={<Login />} path="/" exact />
                 <Route element={ <PrivateRoute /> } path="/home">
