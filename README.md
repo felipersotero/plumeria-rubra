@@ -1,4 +1,4 @@
-<img src="./public/favicon.ico" alt="Plumeria Rubra" style="width:64px;height:auto;margin-left:20px;" />
+![Plumeira Rubra](./src/images/plumeria64.png)
 
 #Plumeria Rubra
 
