@@ -5,8 +5,11 @@ import { DataContext } from '../contexts/context';
 
 function Settings(props){
 
-    const {area, constant, density} = useContext(DataContext);
+    const {area, constant, density} = useContext(DataContext); //adicionar setSettingsChanged
 
+    // function saveSettingsChanges(){
+    //     setSettingsChanged(true);
+    // }
 
     return (
         <div className='bg-background w-full min-h-screen flex items-center flex-col'>
@@ -26,6 +29,9 @@ function Settings(props){
                     <p className='font-inter font-light text-xl'>{density} g/cm³</p>
                 </div>
             </div>
+            {/* <button onClick={saveSettingsChanges}>
+                Alterar configurações
+            </button> */}
         </div>
     );
 }

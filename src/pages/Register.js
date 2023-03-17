@@ -1,10 +1,12 @@
 import React, { useEffect, useState, useContext } from 'react';
 import Header from '../components/Header';
-import { FiCheck } from "react-icons/fi";
+//import { FiCheck } from "react-icons/fi";
 import Card from '../components/Card';
 
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, query, limit, getDocs, orderBy } from 'firebase/firestore';
 import { db } from '../firebase';
+
+import dayjs from 'dayjs';
 
 import { DataContext } from '../contexts/context';
 
@@ -24,14 +26,19 @@ function Register(){
     const [corrosionRates, setCorrosionRates] = useState([]);
     const [efficiencies, setEfficiencies] = useState([]);
 
+    const [isAllowedToSave, setIsAllowedToSave] = useState(false);
+
+    const [latestDate, setLatestDate] = useState();
+
     //Funções
 
-    function saveTime(){
-        console.log(process.env.REACT_APP_TEST)
-    }
+    // function saveTime(){
+    //     console.log(process.env.REACT_APP_TEST)
+    // }
 
     function changeTime(e){
         setLastTime(e.target.validity.valid ? e.target.value : e)
+        setIsAllowedToSave(false)
     }
 
     function changeMasses(value, n){
@@ -41,6 +48,7 @@ function Register(){
         setMasses(updatedMasses)
         console.log(masses)
         console.log(value)
+        setIsAllowedToSave(false)
     }
 
     function calculate(){
@@ -63,6 +71,8 @@ function Register(){
                     : mass))
 
             window.scrollTo({ top: 0, behavior: 'smooth' })
+
+            setIsAllowedToSave(true);
         }
 
     }
@@ -88,29 +98,6 @@ function Register(){
                 alert("Ocorreu um erro ao tentar salvar registro.");
           });
 
-        
-        //collection(db, "Measurements")
-
-        // const collectionRef = firebase.firestore().collection("nomedacolecao");
-
-        // // Cria um objeto com os dados que serão adicionados ao documento
-        // const data = {
-        // campo1: "valor1",
-        // campo2: "valor2",
-        // campo3: "valor3"
-        // };
-
-        // // Adiciona o objeto à coleção usando o método add()
-        // collectionRef
-        // .add(data)
-        // .then((docRef) => {
-        //     console.log("Documento criado com sucesso:", docRef.id);
-        // })
-        // .catch((error) => {
-        //     console.error("Erro ao criar documento:", error);
-        // });
-
-
     }
 
     useEffect(()=>{
@@ -122,25 +109,43 @@ function Register(){
 
     }, [corrosionRates])
 
+    async function getLatestDate(){
+
+        const q = query(collection(db, "Measurements"), orderBy("date", "desc"), limit(1));
+
+        await getDocs(q)
+            .then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    setLatestDate(doc.data().date)
+                })
+            })
+
+    }
+
+    useEffect(() => {
+        getLatestDate()
+    }, [])
+
     return (
         <div className='bg-background w-full min-h-screen flex items-center flex-col'>
             <Header nome={"Cadastro"} />
             <div className='flex flex-col sm:flex-row w-3/4 h-32 justify-around my-4'>
-                <div>
+                <div className='flex flex-col items-center'>
                     <p className='font-inter font-medium text-xl'>Último cadastro</p>
+                    <p className='font-inter font-light text-xl my-4'>{dayjs(latestDate).format("DD/MM/YYYY HH:mm")}</p>
                 </div>
-                <div>
+                <div className='flex flex-col items-center'>
                     <p className='font-inter font-medium text-xl'>Tempo desde o último cadastro</p>
-                    <div className='flex flex-row justify-around items-center'>
+                    <div className='flex flex-row items-center justify-center'>
                         <input
                             className='border-2 border-gray-500 rounded-md h-12 w-36 my-2 font-inter font-normal text-2xl'
                             type="number"
                             onChange={changeTime}
                         />
-                        <p className='font-inter font-light text-xl'>horas</p>
-                        <button className='bg-primary w-12 h-12 rounded-full flex items-center justify-center' onClick={saveTime} >
+                        <p className='font-inter font-light text-xl mx-2'>horas</p>
+                        {/* <button className='bg-primary w-12 h-12 rounded-full flex items-center justify-center' onClick={saveTime} >
                             <FiCheck className='text-white text-3xl' />
-                        </button>
+                        </button> */}
                     </div>
                 </div>
             </div>
@@ -164,22 +169,6 @@ function Register(){
                     <Card tubeNumber={"11"} image={talo} percent={"15"} changeMasses={changeMasses} corrosionRate={corrosionRates[10]} efficiency={efficiencies[10]} />
                     <Card tubeNumber={"12"} image={talo} percent={"20"} changeMasses={changeMasses} corrosionRate={corrosionRates[11]} efficiency={efficiencies[11]} />
                 </div>
-                {/* <div className='w-1/2'>
-                    <Card tubeNumber={"01"} percent={"0"}  changeMasses={(e) => changeMasses(0, e)} />
-                    <Card tubeNumber={"02"} percent={"1"}  changeMasses={(e) => changeMasses(1, e)} />
-                    <Card tubeNumber={"03"} percent={"5"}  changeMasses={(e) => changeMasses(2, e)} />
-                    <Card tubeNumber={"04"} percent={"10"} changeMasses={(e) => changeMasses(3, e)} />
-                    <Card tubeNumber={"05"} percent={"15"} changeMasses={(e) => changeMasses(4, e)} />
-                    <Card tubeNumber={"06"} percent={"20"} changeMasses={(e) => changeMasses(5, e)} />
-                </div>
-                <div className='w-1/2'>
-                    <Card tubeNumber={"07"} percent={"0"}  changeMasses={(e) => changeMasses(6, e)} />
-                    <Card tubeNumber={"08"} percent={"1"}  changeMasses={(e) => changeMasses(7, e)} />
-                    <Card tubeNumber={"09"} percent={"5"}  changeMasses={(e) => changeMasses(8, e)} />
-                    <Card tubeNumber={"10"} percent={"10"} changeMasses={(e) => changeMasses(9, e)} />
-                    <Card tubeNumber={"11"} percent={"15"} changeMasses={(e) => changeMasses(10, e)} />
-                    <Card tubeNumber={"12"} percent={"20"} changeMasses={(e) => changeMasses(11, e)} />
-                </div> */}
             </div>
 
             {/* Botões de calcular e salvar no banco de dados */}
@@ -188,9 +177,10 @@ function Register(){
                 <button className='bg-primary hover:bg-primary/90 w-80 h-16 flex justify-center items-center rounded-2xl m-4' onClick={calculate}>
                     <p className='text-white font-inter font-semibold text-3xl'>Calcular</p>
                 </button>
-                <button className='bg-primary hover:bg-primary/90 w-80 h-16 flex justify-center items-center rounded-2xl m-4' onClick={save}>
+                <button className={`w-80 h-16 flex justify-center items-center rounded-2xl m-4 ${!isAllowedToSave ? 'disabled bg-primary/50 cursor-not-allowed' : 'bg-primary hover:bg-primary/90'}`} onClick={save}>
                     <p className='text-white font-inter font-semibold text-3xl'>Salvar</p>
                 </button>
+
             </div>
             <footer className='h-48' />
         </div>

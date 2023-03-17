@@ -9,7 +9,7 @@ import Loading from '../components/Loading';
 
 function Home(){
 
-  const {setArea, setConstant, setDensity, setInitialMasses} = useContext(DataContext);
+  const {setArea, setConstant, setDensity, setInitialMasses, settingsChanged, setSettingsChanged} = useContext(DataContext);
 
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -30,13 +30,18 @@ function Home(){
                           setConstant(data.constant);
                           setDensity(data.density);
                           setInitialMasses(data.initialMasses)
-                          setIsLoaded(true);                
+                          setIsLoaded(true);
+                          setSettingsChanged(false);
                   })
           })
   }
 
   useEffect(() => {
+     if (settingsChanged){
       getData()
+     } else {
+      setIsLoaded(true);
+     }
   }, [])
 
   return (
@@ -62,7 +67,7 @@ function Home(){
             </Link>
           </>
         :
-        <Loading />
+        <Loading height="h-12" width="w-12" />
       }
     </div>
   );
