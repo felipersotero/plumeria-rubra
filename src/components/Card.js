@@ -5,7 +5,7 @@ function Card(props){
 
     function handleChange(e){
         props.changeMasses(e.target.validity.valid ? e.target.value : e, (parseInt(props.tubeNumber)-1))
-        console.log(e.target.validity.valid ? e.target.value : e)
+        //console.log(e.target.validity.valid ? e.target.value : e)
     }
     
     function handleWheel(e){
@@ -16,7 +16,7 @@ function Card(props){
         <div className='border-2 border-border rounded-xl overflow-hidden w-full m-4'>
             <div className='bg-primary h-1/3 flex flex-row items-center justify-around p-2'>
                 <p className='font-inter font-semibold text-3xl text-white'>Tubo de ensaio {props.tubeNumber}</p>
-                <img src={props.image} alt="imagem" className='w-16 h-16' />
+                <img src={props.image} alt="imagem" className='w-12 h-12 sm:w-16 sm:h-16 mx-3' />
                 <p className='font-inter font-light text-xl text-white'>{props.percent}%</p>
             </div>
             <div className='flex flex-col sm:flex-row justify-between m-4'>

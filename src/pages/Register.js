@@ -12,6 +12,7 @@ import { DataContext } from '../contexts/context';
 
 import plumeria from '../images/plumeria.png';
 import talo from '../images/talo.png';
+import Loading from '../components/Loading';
 
 function Register(){
 
@@ -29,6 +30,7 @@ function Register(){
     const [isAllowedToSave, setIsAllowedToSave] = useState(false);
 
     const [latestDate, setLatestDate] = useState();
+    const [isDateLoaded, setIsDateLoaded] = useState(false);
 
     const [suggestedLastTime, setSuggestedLastTime] = useState(0);
 
@@ -113,12 +115,24 @@ function Register(){
                 })
             })
 
+            setIsDateLoaded(true)
+
     }
 
     useEffect(() => {
         getLatestDate()
     }, [])
 
+    function estimateLastTime(){
+
+        const timeDifference = dayjs().diff(latestDate, "hour")
+        setSuggestedLastTime( timeDifference )     
+
+    }
+
+    useEffect(() => {
+        estimateLastTime()
+    }, [latestDate])
 
     return (
         <div className='bg-background w-full min-h-screen flex items-center flex-col'>
@@ -126,7 +140,13 @@ function Register(){
             <div className='flex flex-col sm:flex-row w-3/4 justify-around my-4'>
                 <div className='flex flex-col items-center'>
                     <p className='font-inter font-medium text-xl'>Último cadastro</p>
-                    <p className='font-inter font-light text-xl my-4'>{dayjs(latestDate).format("DD/MM/YYYY HH:mm")}</p>
+                    { isDateLoaded ?
+                            <p className='font-inter font-light text-xl my-4'>{dayjs(latestDate).format("DD/MM/YYYY HH:mm")}</p>
+                            :
+                            <div className='my-4'>
+                                <Loading height="h-6" width="w-6"/>
+                            </div>
+                    }
                 </div>
                 <div className='flex flex-col items-center'>
                     <p className='font-inter font-medium text-xl'>Tempo desde o último cadastro</p>
