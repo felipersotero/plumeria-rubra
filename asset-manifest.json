@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/plumeria-rubra/static/css/main.ec2bb77d.css",
-    "main.js": "/plumeria-rubra/static/js/main.5a84af2c.js",
+    "main.js": "/plumeria-rubra/static/js/main.574626f2.js",
     "index.html": "/plumeria-rubra/index.html",
     "main.ec2bb77d.css.map": "/plumeria-rubra/static/css/main.ec2bb77d.css.map",
-    "main.5a84af2c.js.map": "/plumeria-rubra/static/js/main.5a84af2c.js.map"
+    "main.574626f2.js.map": "/plumeria-rubra/static/js/main.574626f2.js.map"
   },
   "entrypoints": [
     "static/css/main.ec2bb77d.css",
-    "static/js/main.5a84af2c.js"
+    "static/js/main.574626f2.js"
   ]
 }
