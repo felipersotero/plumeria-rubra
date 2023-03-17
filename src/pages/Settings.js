@@ -14,17 +14,16 @@ function Settings(props){
     return (
         <div className='bg-background w-full min-h-screen flex items-center flex-col'>
             <Header nome={"Configurações"} />
-            <div className='w-1/3 my-4'>
-                
-                <div className='flex flex-row justify-around items-center my-2'>
+            <div className='w-full md:w-1/3 my-4'>
+                <div className='flex flex-col md:flex-row justify-around items-center my-2'>
                     <p className='font-inter font-medium text-xl'>Área</p>
                     <p className='font-inter font-light text-xl'>{area} cm²</p>
                 </div>
-                <div className='flex flex-row justify-around items-center my-2'>
+                <div className='flex flex-col md:flex-row justify-around items-center my-2'>
                     <p className='font-inter font-medium text-xl'>Constante</p>
                     <p className='font-inter font-light text-xl'>{constant} mm/ano</p>
                 </div>
-                <div className='flex flex-row justify-around items-center my-2'>
+                <div className='flex flex-col md:flex-row justify-around items-center my-2'>
                     <p className='font-inter font-medium text-xl'>Densidade</p>
                     <p className='font-inter font-light text-xl'>{density} g/cm³</p>
                 </div>

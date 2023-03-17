@@ -61,13 +61,13 @@ function Data(props){
                                             <p className='font-inter font-semibold text-xl text-white mx-4'>Registro {registerCount-i}</p>
                                             <p className='font-inter font-semibold text-xl text-white mx-4'>{dayjs(e.date).format("DD/MM/YYYY HH:mm")}</p>
                                         </div>
-                                        <div className='flex flex-row justify-between p-4'>
+                                        <div className='flex flex-col lg:flex-row justify-between p-4'>
                                             {e.masses.map((m, j) => {
                                                 return (
                                                     <div key={j} className='flex flex-col'>
                                                         {
-                                                            (j == 0) ? 
-                                                                    <div className='flex flex-row'>
+                                                            (j === 0) ? 
+                                                                    <div className='flex flex-row my-2 lg:my-0'>
                                                                         <div>
                                                                             <p className='font-inter font-medium text-base'>Dados</p>
                                                                             <p className='font-inter font-medium text-base'>Massa (g)</p>
@@ -84,12 +84,21 @@ function Data(props){
 
                                                                     </div>     
                                                                 :   
-                                                                    <>
-                                                                        <p className='font-inter font-medium text-base'>Amostra {j+1}</p>
-                                                                        <p className='font-inter font-light text-base'>{Number(e.masses[j]).toFixed(4)}</p>
-                                                                        <p className='font-inter font-light text-base'>{Number(e.corrosionRates[j]).toFixed(4)}</p>                                            
-                                                                        <p className='font-inter font-light text-base'>{Number(e.efficiencies[j]).toFixed(4)}</p>   
-                                                                    </>
+                                                                    <div className='flex flex-row my-2 lg:my-0'>
+                                                                        <div className='lg:hidden'>
+                                                                            <p className='font-inter font-medium text-base'>Dados</p>
+                                                                            <p className='font-inter font-medium text-base'>Massa (g)</p>
+                                                                            <p className='font-inter font-medium text-base'>Coeficiente de Corrosão</p>                                            
+                                                                            <p className='font-inter font-medium text-base'>Eficiência de Inibição (%)</p>           
+                                                                        </div>
+                                                                        <div className='border-l-2 border-border mx-4 lg:hidden' />
+                                                                        <div>
+                                                                            <p className='font-inter font-medium text-base'>Amostra {j+1}</p>
+                                                                            <p className='font-inter font-light text-base'>{Number(e.masses[j]).toFixed(4)}</p>
+                                                                            <p className='font-inter font-light text-base'>{Number(e.corrosionRates[j]).toFixed(4)}</p>                                            
+                                                                            <p className='font-inter font-light text-base'>{Number(e.efficiencies[j]).toFixed(4)}</p>                                                                               
+                                                                        </div>
+                                                                    </div>
                                                             }
                                                     </div>
                                                 )

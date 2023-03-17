@@ -1,5 +1,6 @@
 {
   "name": "web",
+  "homepage": "http://felipersotero.github.io/plumeria-rubra",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -49,6 +50,5 @@
     "gh-pages": "^5.0.0",
     "postcss": "^8.4.21",
     "tailwindcss": "^3.2.7"
-  },
-  "homepage": "http://felipersotero.github.io/plumeria-rubra"
+  }
 }

@@ -30,6 +30,8 @@ function Register(){
 
     const [latestDate, setLatestDate] = useState();
 
+    const [suggestedLastTime, setSuggestedLastTime] = useState(0);
+
     //Funções
 
     // function saveTime(){
@@ -117,10 +119,11 @@ function Register(){
         getLatestDate()
     }, [])
 
+
     return (
         <div className='bg-background w-full min-h-screen flex items-center flex-col'>
             <Header nome={"Cadastro"} />
-            <div className='flex flex-col sm:flex-row w-3/4 h-32 justify-around my-4'>
+            <div className='flex flex-col sm:flex-row w-3/4 justify-around my-4'>
                 <div className='flex flex-col items-center'>
                     <p className='font-inter font-medium text-xl'>Último cadastro</p>
                     <p className='font-inter font-light text-xl my-4'>{dayjs(latestDate).format("DD/MM/YYYY HH:mm")}</p>
@@ -129,9 +132,10 @@ function Register(){
                     <p className='font-inter font-medium text-xl'>Tempo desde o último cadastro</p>
                     <div className='flex flex-row items-center justify-center'>
                         <input
-                            className='border-2 border-gray-500 rounded-md h-12 w-36 my-2 font-inter font-normal text-2xl'
+                            className='border-2 border-gray-500 rounded-md h-12 w-36 my-2 font-inter font-normal text-2xl p-2'
                             type="number"
                             onChange={changeTime}
+                            placeholder={suggestedLastTime}
                         />
                         <p className='font-inter font-light text-xl mx-2'>horas</p>
                         {/* <button className='bg-primary w-12 h-12 rounded-full flex items-center justify-center' onClick={saveTime} >
